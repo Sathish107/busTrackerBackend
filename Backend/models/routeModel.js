@@ -5,7 +5,7 @@ const routeSchema=mongoose.Schema({
         type:Number,
         required:true
     },
-    buses:[Number],
+    buses:[String],
     start:{
         type:String,
         required:true

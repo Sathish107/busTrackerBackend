@@ -2,7 +2,8 @@ const asyncHandler=require('express-async-handler')
 const Route=require('../models/routeModel')
 
 const getRoutes=asyncHandler(async (req,res)=>{
-    res.status(200).json({"message":"get routes"})
+    const routes=await Route.find()
+    res.status(200).json({"routes":routes})
 })
 
 const postRoutes=asyncHandler(async (req,res)=>{
@@ -23,12 +24,16 @@ const postRoutes=asyncHandler(async (req,res)=>{
 })
 
 const putRoutes=asyncHandler(async (req,res)=>{
-    res.status(200).json({"message":`put routes ${req.params.id}`})
+    const editedRoute=await Route.findByIdAndUpdate(req.params.id,req.body,{new:true})
+    res.status(200).json({"editedRoute":editedRoute})
 })
 
 const deleteRoutes=asyncHandler(async (req,res)=>{
-    res.status(200).json({"message":`delete routes ${req.params.id}`})
+    await Route.findByIdAndDelete(req.params.id)
+    res.status(200).json({"id":req.params.id})
 })
+
+
 
 module.exports={
     getRoutes,

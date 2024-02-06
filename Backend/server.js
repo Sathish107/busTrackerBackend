@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended:false}))
 
 app.use('/api/route',require('./routes/routeRoutes'))
 app.use('/api/bus',require('./routes/busRoutes'))
+app.use('/api/user',require('./routes/userRoutes'))
 
 app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`)

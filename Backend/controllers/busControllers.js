@@ -39,6 +39,12 @@ const deleteBus=asyncHandler(async (req,res)=>{
     }
 })
 
+
+const getData=asyncHandler(async (req,res)=>{
+    const foundData=await Bus.findById(req.params.id).select(req.params.querry)
+    res.status(200).json({"message":foundData})
+})
+
 const getApiKey=asyncHandler(async (req,res)=>{
     let apiKey=uuid.v4()
     let bus=await Bus.findOne({"apiKey":apiKey})
@@ -54,5 +60,6 @@ module.exports={
     postBus,
     putBus,
     deleteBus,
+    getData,
     getApiKey
 }

@@ -33,11 +33,15 @@ const deleteRoutes=asyncHandler(async (req,res)=>{
     res.status(200).json({"id":req.params.id})
 })
 
-
+const getData=asyncHandler(async (req,res)=>{
+    const foundData=await Route.findById(req.params.id).select(req.params.querry)
+    res.status(200).json({"message":foundData})
+})
 
 module.exports={
     getRoutes,
     postRoutes,
     putRoutes,
-    deleteRoutes
+    deleteRoutes,
+    getData
 }
